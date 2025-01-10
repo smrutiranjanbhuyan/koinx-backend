@@ -7,13 +7,10 @@ const cron = require('node-cron');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.log('Failed to connect to MongoDB:', err));
+// Connect to MongoDB without deprecated options
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.log('Failed to connect to MongoDB:', err));
 
 // Middleware
 app.use(express.json());
